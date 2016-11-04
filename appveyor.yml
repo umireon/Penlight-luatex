@@ -4,3 +4,5 @@ install:
   - ps: .\ci\texlive.ps1
 before_build:
   - luatex --version
+build:
+  - texlua --version
