@@ -4,6 +4,8 @@ install:
   - ps: .\ci\texlive.ps1
 before_build:
   - luatex --version
+  - git submodule init
+  - git submodule update
 build_script:
   - texlua build.lua
 test_script:
