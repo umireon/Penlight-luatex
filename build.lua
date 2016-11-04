@@ -9,13 +9,11 @@ for name, file in pairs(build.modules) do
   out:write("end\n")
 end
 out:write([[
+local is_windows = package.config:sub(1, 1) == "\\"
 local compat = require 'pl.compat'
-local path = require 'pl.path'
 function compat.execute (cmd)
     local res1, res2 = os.execute(cmd)
-    if path.is_windows then
-        return res1 == 0, res1
-    elseif compat.lua51 then
+    if is_windows or compat.lua51 then
         return res1 == 0, res1
     else
         return res1 == 0, math.floor(res1 / 256)
