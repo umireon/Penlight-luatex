@@ -11,8 +11,12 @@ end
 out:write([[
 local compat = require 'pl.compat'
 function compat.execute (cmd)
-    local res = os.execute(cmd)
-    return res == 0, math.floor(res / 256)
+    local res1, res2 = os.execute(cmd)
+    if compat.lua51 then
+        return res1 == 0, res1
+    else
+        return res1 == 0, math.floor(res1 / 256)
+    end
 end
 ]])
 out:close()
