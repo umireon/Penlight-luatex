@@ -22,3 +22,4 @@ before_script:
 - luatex --version
 script:
 - texlua build.lua
+- perl test_texlua.pl
