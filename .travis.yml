@@ -7,8 +7,11 @@ matrix:
       apt:
         packages:
         - texlive-luatex
-script:
+    env: TEX=apt
+  - os: linux
+    sudo: false
+    env: TEX=texlive
+install:
+- if [[ "$TEX" == "texlive" ]]; then eval $(sh ci/texlive.sh); fi
+before_script:
 - luatex --version
-- luatex --help
-- texlua --version
-- texlua --help
