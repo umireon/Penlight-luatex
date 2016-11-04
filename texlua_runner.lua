@@ -12,6 +12,10 @@ if (arg[1] == 'test-date') then
   utils.execute = function() return true end
 end
 
+if (arg[1] == 'test-lapp') then
+  getmetatable(io.stdin).close = function()end
+end
+
 if (arg[1] == 'test-tablex') then
   zip = nil
 end
