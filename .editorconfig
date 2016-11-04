@@ -1,5 +1,13 @@
 root = true
 
+[*.lua]
+indent_style = space
+indent_size = 2
+
+[*.pl]
+indent_style = space
+indent_size = 4
+
 [*.yml]
 indent_style = space
 indent_size = 2
