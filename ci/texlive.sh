@@ -10,7 +10,7 @@ if [ ! -x $TEXLIVE_INSTALL_PREFIX/bin/*/tex ]; then
     option_doc 0
     option_src 0
   " > $INSTALL_TL_DIR/texlive.profile
-  curl -L $INSTALL_TL_URL | tar xz -C $INSTALL_TL_DIR
+  curl -fsSL $INSTALL_TL_URL | tar xz -C $INSTALL_TL_DIR
   $INSTALL_TL_DIR/install-tl-*/install-tl -portable -profile $INSTALL_TL_DIR/texlive.profile 1>&2
 fi
 
