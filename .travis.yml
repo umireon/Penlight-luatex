@@ -20,3 +20,5 @@ install:
 - if [[ "$TEX" == "texlive" ]]; then eval $(sh ci/texlive.sh); fi
 before_script:
 - luatex --version
+script:
+- texlua build.lua
