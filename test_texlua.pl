@@ -12,8 +12,11 @@ $ENV{'HOME'} = '' if $ENV{'USERPROFILE'};
 my $runner = "$basedir/texlua_runner.lua";
 
 chdir 'Penlight';
+my $fail = 0;
 foreach my $file ( glob 'tests/*.lua' ) {
     my $name = basename $file, '.lua';
     print $name."\n";
-    system("texlua $runner $name $file") and die;
+    my $code = system("texlua $runner $name $file");
+    $fail = 1 if $code != 0;
 }
+$fail and die;
