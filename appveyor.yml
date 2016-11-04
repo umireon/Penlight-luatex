@@ -5,4 +5,4 @@ install:
 before_build:
   - luatex --version
 build_script:
-  - texlua --version
+  - texlua build.lua
