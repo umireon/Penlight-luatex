@@ -9,4 +9,4 @@ before_build:
 build_script:
   - texlua build.lua
 test_script:
-  - runscript test_texlua.pl
+  - runscript tlperl test_texlua.pl
