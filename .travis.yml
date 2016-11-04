@@ -1,0 +1,14 @@
+language: generic
+matrix:
+  include:
+  - os: linux
+    sudo: false
+    addons:
+      apt:
+        packages:
+        - texlive-luatex
+script:
+- luatex --version
+- luatex --help
+- texlua --version
+- texlua --help
