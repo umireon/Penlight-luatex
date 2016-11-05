@@ -5,6 +5,7 @@ use autodie;
 
 use Cwd 'abs_path';
 use File::Basename;
+use POSIX;
 
 my $basedir = abs_path(dirname __FILE__);
 $ENV{'LUAINPUTS'} = "$basedir//";
@@ -12,11 +13,13 @@ $ENV{'HOME'} = '' if $ENV{'USERPROFILE'};
 my $runner = "$basedir/texlua_runner.lua";
 
 chdir 'Penlight';
-my $fail = 0;
+my $success = 1;
 foreach my $file ( glob 'tests/*.lua' ) {
     my $name = basename $file, '.lua';
-    print $name."\n";
-    my $code = system("texlua $runner $name $file");
-    $fail = 1 if $code != 0;
+    my $cmd = "texlua $runner $name $file";
+    print "$cmd\n";
+    my $status = system $cmd;
+    ($status & 255) and die;
+    $success &= $status == 0;
 }
-$fail and die;
+$success or die;
