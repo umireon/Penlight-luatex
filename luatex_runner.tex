@@ -1,0 +1,41 @@
+\directlua{
+texio.write('=begin')
+require 'lua-penlight'
+local lf = string.char(10)
+local cr = string.char(13)
+local bs = string.char(92)
+local is_windows = package.config:sub(1, 1) == bs
+
+if (tex.jobname == 'test-args') then
+  arg[0] = tex.jobname
+end
+
+if (tex.jobname == 'test-executeex') then
+  if is_windows then
+    local test = require 'pl.test'
+    local test_asserteq = test.asserteq
+    test.asserteq = function(x,y,eps,where)
+      if type(x) == 'string' and type(y) == 'string' then
+        y = y:gsub(lf, cr..lf)
+      end
+      return test_asserteq(x, y, eps, where)
+    end
+  end
+end
+
+if (tex.jobname == 'test-date') then
+  local utils = require 'pl.utils'
+  utils.execute = function() return true end
+end
+
+if (tex.jobname == 'test-lapp') then
+  getmetatable(io.stdin).close = function()end
+end
+
+if (tex.jobname == 'test-tablex') then
+  zip = nil
+end
+
+dofile('tests/'..tex.jobname..'.lua')
+texio.write('=end')
+}\end
