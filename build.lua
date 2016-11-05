@@ -27,7 +27,10 @@ function os.execute(cmd)
   local lua51 = _VERSION == 'Lua 5.1'
   local is_windows = package.config:sub(1, 1) == "\\"
   local res = _G.os.execute(cmd)
-  if lua51 or is_windows then
+  if is_windows then
+    res = res * 256
+  end
+  if lua51 then
     return res
   else
     local success = res == 0
