@@ -21,3 +21,4 @@ before_script:
 script:
 - texlua build.lua
 - perl test_texlua.pl
+- perl test_luatex.pl
