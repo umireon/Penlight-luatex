@@ -11,3 +11,5 @@ build_script:
 test_script:
   - runscript tlperl test_texlua.pl
   - runscript tlperl test_luatex.pl
+  - runscript tlperl test_texlua.pl texluajit --jiton
+  - runscript tlperl test_luatex.pl luajittex --jiton

@@ -22,3 +22,5 @@ script:
 - texlua build.lua
 - perl test_texlua.pl
 - perl test_luatex.pl
+- perl test_texlua.pl texluajit --jiton
+- perl test_luatex.pl luajittex --jiton
