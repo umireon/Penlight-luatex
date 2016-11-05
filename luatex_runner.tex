@@ -11,7 +11,7 @@ if (tex.jobname == 'test-args') then
 end
 
 if (tex.jobname == 'test-executeex') then
-  if is_windows then
+  if is_windows and not jit then
     local test = require 'pl.test'
     local test_asserteq = test.asserteq
     test.asserteq = function(x,y,eps,where)

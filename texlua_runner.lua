@@ -10,7 +10,7 @@ if (arg[1] == 'test-args') then
 end
 
 if (arg[1] == 'test-executeex') then
-  if is_windows then
+  if is_windows and not jit then
     local test = require 'pl.test'
     local test_asserteq = test.asserteq
     test.asserteq = function(x,y,eps,where)
