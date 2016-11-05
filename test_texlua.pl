@@ -9,7 +9,6 @@ use POSIX;
 
 my $basedir = abs_path(dirname __FILE__);
 $ENV{'LUAINPUTS'} = "$basedir//";
-$ENV{'HOME'} = '' if $ENV{'USERPROFILE'};
 my $runner = "$basedir/texlua_runner.lua";
 
 chdir 'Penlight';
