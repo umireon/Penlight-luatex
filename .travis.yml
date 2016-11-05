@@ -14,8 +14,6 @@ matrix:
   - os: linux
     sudo: false
     env: TEX=texlive
-  - os: osx
-    env: TEX=texlive
 install:
 - if [[ "$TEX" == "texlive" ]]; then eval $(sh ci/texlive.sh); fi
 before_script:
